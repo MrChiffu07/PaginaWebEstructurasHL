@@ -5,35 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Estructuras HL S.A.S. - Soluciones en metal para hogares, comercios e industria.">
   <title>Estructuras HL S.A.S.</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Oswald:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
   <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js" defer></script>
   <script src="script.js" defer></script>
 </head>
 <body>
+  <svg class="d-none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="whatsapp-icon" viewBox="0 0 16 16">
+      <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+    </symbol>
+  </svg>
   <header class="site-header" id="inicio">
+    <nav class="navbar navbar-expand-lg navbar-dark h-100">
     <div class="container header-inner">
       <a class="brand" href="#inicio" aria-label="Estructuras HL, inicio">
-        <img src="logoHL.png" alt="Logo de Estructuras HL S.A.S.">
+        <img src="/img/logoHL.png" alt="Logo de Estructuras HL S.A.S.">
       </a>
-      <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
-        <i data-lucide="menu"></i>
+      <button class="navbar-toggler menu-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-label="Abrir menú" aria-expanded="false" aria-controls="main-nav">
+        <span class="navbar-toggler-icon"></span>
       </button>
-      <nav class="main-nav" id="main-nav" aria-label="Navegación principal">
-        <a class="active" href="#inicio">Inicio</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#galeria">Galería</a>
-        <a href="#sedes">Sedes</a>
-        <a href="#contacto">Contacto</a>
+      <nav class="collapse navbar-collapse main-nav" id="main-nav" aria-label="Navegación principal">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#nosotros">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
+          <li class="nav-item"><a class="nav-link" href="#sedes">Sedes</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+        </ul>
       </nav>
-      <a class="button button-whatsapp header-cta" href="https://wa.me/573001234567" target="_blank" rel="noreferrer">
-        <i data-lucide="message-circle"></i>
+      <a class="btn button button-whatsapp header-cta" href="https://wa.me/573001234567" target="_blank" rel="noreferrer">
+        <svg class="bi bi-whatsapp whatsapp-icon" width="16" height="16" fill="currentColor" aria-hidden="true"><use href="#whatsapp-icon"></use></svg>
         WhatsApp
       </a>
     </div>
+    </nav>
   </header>
 
   <main>
@@ -44,14 +55,18 @@
         <h1 id="hero-title">HL <strong>S.A.S.</strong></h1>
         <p class="hero-lead">Soluciones en metal que dan forma<br>a tus ideas.</p>
         <p class="hero-copy">Diseñamos, fabricamos e instalamos estructuras metálicas con precisión, seguridad y acabados que perduran.</p>
-        <a class="button button-primary" href="#cotizacion">Solicitar cotización <i data-lucide="arrow-right"></i></a>
+        <div class="hero-actions">
+          <a class="btn button button-primary" href="#cotizacion">Solicitar cotización <i data-lucide="arrow-right"></i></a>
+          <a class="btn button button-portfolio" href="docs/portafolio.html" download="Portafolio-Estructuras-HL.html"><i data-lucide="briefcase-business"></i> Descargar portafolio</a>
+        </div>
       </div>
       <div class="hero-scroll" aria-hidden="true"><span></span></div>
     </section>
 
     <section class="about section" id="nosotros">
-      <div class="container about-grid">
-        <div class="about-copy reveal">
+      <div class="container">
+      <div class="row g-5 align-items-center about-grid">
+        <div class="col-lg-6 about-copy reveal">
           <p class="section-kicker"><span></span> Experiencia que respalda</p>
           <h2>Quiénes <em>somos</em></h2>
           <p>Somos una empresa colombiana especializada en el diseño, fabricación e instalación de soluciones metálicas. Convertimos cada necesidad en un proyecto sólido, funcional y hecho a la medida.</p>
@@ -61,18 +76,19 @@
             <article><i data-lucide="users"></i><div><h3>Compromiso</h3><p>con el cliente</p></div></article>
           </div>
         </div>
-        <div class="purpose-panel reveal">
-          <article>
+        <div class="col-lg-6 row g-0 purpose-panel reveal">
+          <article class="col-md-6">
             <i data-lucide="target"></i>
             <h3>Misión</h3>
             <p>Crear estructuras metálicas confiables que aporten valor, estética y tranquilidad a nuestros clientes.</p>
           </article>
-          <article>
+          <article class="col-md-6">
             <i data-lucide="eye"></i>
             <h3>Visión</h3>
             <p>Ser referentes regionales por la calidad, el cumplimiento y la innovación de nuestros proyectos.</p>
           </article>
         </div>
+      </div>
       </div>
     </section>
 
@@ -85,85 +101,87 @@
           </div>
           <p>Soluciones completas, desde la idea inicial hasta la instalación final.</p>
         </div>
-        <div class="services-grid">
-          <article class="service-card reveal">
-            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80" alt="Reja metálica moderna">
-            <div><i data-lucide="panels-top-left"></i><h3>Rejas</h3><p>Protección con diseño</p></div>
-          </article>
-          <article class="service-card reveal">
-            <img src="https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?auto=format&fit=crop&w=700&q=80" alt="Puerta metálica contemporánea">
-            <div><i data-lucide="door-open"></i><h3>Puertas</h3><p>Accesos a medida</p></div>
-          </article>
-          <article class="service-card reveal">
-            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80" alt="Ventana de perfilería metálica">
-            <div><i data-lucide="panel-top"></i><h3>Ventanas</h3><p>Luz, estilo y seguridad</p></div>
-          </article>
-          <article class="service-card reveal">
-            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80" alt="Baranda metálica interior">
-            <div><i data-lucide="align-vertical-justify-center"></i><h3>Barandas</h3><p>Acabados precisos</p></div>
-          </article>
-          <article class="service-card reveal">
-            <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=700&q=80" alt="Estructura metálica industrial">
-            <div><i data-lucide="warehouse"></i><h3>Estructuras</h3><p>Solidez para construir</p></div>
-          </article>
-          <article class="service-card reveal">
-            <img src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=700&q=80" alt="Trabajo de soldadura">
-            <div><i data-lucide="hard-hat"></i><h3>Otros servicios</h3><p>Proyectos especiales</p></div>
-          </article>
+        <div class="row g-3 row-cols-2 row-cols-md-3 row-cols-xl-6 services-grid">
+          <article class="col"><div class="card service-card reveal">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=700&q=80" alt="Reja metálica moderna">
+            <div class="card-body"><i data-lucide="panels-top-left"></i><h3>Rejas</h3><p>Protección con diseño</p></div>
+          </div></article>
+          <article class="col"><div class="card service-card reveal">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1506377295352-e3154d43ea9e?auto=format&fit=crop&w=700&q=80" alt="Puerta metálica contemporánea">
+            <div class="card-body"><i data-lucide="door-open"></i><h3>Puertas</h3><p>Accesos a medida</p></div>
+          </div></article>
+          <article class="col"><div class="card service-card reveal">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80" alt="Ventana de perfilería metálica">
+            <div class="card-body"><i data-lucide="panel-top"></i><h3>Ventanas</h3><p>Luz, estilo y seguridad</p></div>
+          </div></article>
+          <article class="col"><div class="card service-card reveal">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80" alt="Baranda metálica interior">
+            <div class="card-body"><i data-lucide="align-vertical-justify-center"></i><h3>Barandas</h3><p>Acabados precisos</p></div>
+          </div></article>
+          <article class="col"><div class="card service-card reveal">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=700&q=80" alt="Estructura metálica industrial">
+            <div class="card-body"><i data-lucide="warehouse"></i><h3>Estructuras</h3><p>Solidez para construir</p></div>
+          </div></article>
+          <article class="col"><div class="card service-card reveal">
+            <img class="card-img-top" src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=700&q=80" alt="Trabajo de soldadura">
+            <div class="card-body"><i data-lucide="hard-hat"></i><h3>Otros servicios</h3><p>Proyectos especiales</p></div>
+          </div></article>
         </div>
       </div>
     </section>
 
     <section class="gallery section" id="galeria">
-      <div class="container gallery-layout">
-        <div class="gallery-copy reveal">
+      <div class="container">
+      <div class="row g-4 align-items-center gallery-layout">
+        <div class="col-lg-3 gallery-copy reveal">
           <p class="section-kicker"><span></span> Trabajo reciente</p>
           <h2>Nuestra <em>Galería</em></h2>
           <p>Cada proyecto refleja nuestro cuidado por el detalle y la calidad del resultado final.</p>
-          <button class="button button-outline" type="button" id="show-all">Ver proyectos <i data-lucide="arrow-right"></i></button>
+          <button class="btn button button-outline" type="button" id="show-all">Ver proyectos <i data-lucide="arrow-right"></i></button>
         </div>
-        <div class="gallery-grid">
-          <button class="gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=90" aria-label="Ampliar imagen de rejas">
+        <div class="col-lg-9"><div class="row g-2 row-cols-2 row-cols-xl-4 gallery-grid">
+          <button class="col gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1600&q=90" aria-label="Ampliar imagen de rejas">
             <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=650&q=80" alt="Proyecto de rejas metálicas">
             <span><i data-lucide="maximize-2"></i></span>
           </button>
-          <button class="gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=90" aria-label="Ampliar imagen de escalera">
+          <button class="col gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1600&q=90" aria-label="Ampliar imagen de escalera">
             <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=650&q=80" alt="Escalera con baranda metálica">
             <span><i data-lucide="maximize-2"></i></span>
           </button>
-          <button class="gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=90" aria-label="Ampliar imagen de estructura">
+          <button class="col gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=1600&q=90" aria-label="Ampliar imagen de estructura">
             <img src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=650&q=80" alt="Cubierta de estructura metálica">
             <span><i data-lucide="maximize-2"></i></span>
           </button>
-          <button class="gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=90" aria-label="Ampliar imagen de ventanales">
+          <button class="col gallery-item reveal" type="button" data-full="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1600&q=90" aria-label="Ampliar imagen de ventanales">
             <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=650&q=80" alt="Ventanales con marcos metálicos">
             <span><i data-lucide="maximize-2"></i></span>
           </button>
-        </div>
+        </div></div>
+      </div>
       </div>
     </section>
 
-    <section class="locations" id="sedes">
-      <div class="location-side section reveal">
+    <section class="locations row g-0" id="sedes">
+      <div class="col-12 col-lg-6 location-side section reveal">
         <div class="location-content">
           <p class="section-kicker"><span></span> Estamos cerca de ti</p>
           <h2>Nuestras <em>sedes</em></h2>
           <div class="location-list">
-            <article><i data-lucide="map-pin"></i><div><h3>Bogotá</h3><p>Cra. 45 # 12-34<br>Bogotá, D.C.</p></div></article>
+            <article><i data-lucide="map-pin"></i><div><h3>Bogotá</h3><p>Cra. 11a # 42B-6<br>Bogotá, D.C.</p></div></article>
             <article><i data-lucide="map-pin"></i><div><h3>Duitama</h3><p>Cl. 8 # 29-18<br>Duitama, Boyacá</p></div></article>
           </div>
         </div>
       </div>
-      <div class="quote-side section" id="cotizacion">
+      <div class="col-12 col-lg-6 quote-side section" id="cotizacion">
         <div class="quote-content reveal">
           <p class="section-kicker"><span></span> Hablemos de tu proyecto</p>
           <h2>Solicita tu cotización</h2>
           <p>Cuéntanos qué necesitas y te contactaremos por WhatsApp.</p>
           <form id="quote-form">
-            <label><span>Nombre completo</span><div class="input-wrap"><i data-lucide="user"></i><input id="name" name="name" type="text" placeholder="Nombre completo" required></div></label>
-            <label><span>Servicio de interés</span><div class="input-wrap"><i data-lucide="briefcase-business"></i><select id="service" name="service" required><option value="">Selecciona un servicio</option><option>Rejas</option><option>Puertas</option><option>Ventanas</option><option>Barandas</option><option>Estructuras metálicas</option><option>Otro servicio</option></select></div></label>
-            <label><span>Descripción</span><div class="input-wrap textarea-wrap"><i data-lucide="message-square-text"></i><textarea id="description" name="description" placeholder="Describe brevemente tu proyecto" rows="3"></textarea></div></label>
-            <button class="button button-primary form-submit" type="submit"><i data-lucide="message-circle"></i> Enviar por WhatsApp</button>
+            <label><span>Nombre completo</span><div class="input-wrap"><i data-lucide="user"></i><input class="form-control" id="name" name="name" type="text" placeholder="Nombre completo" required></div></label>
+            <label><span>Servicio de interés</span><div class="input-wrap"><i data-lucide="briefcase-business"></i><select class="form-select" id="service" name="service" required><option value="">Selecciona un servicio</option><option>Rejas</option><option>Puertas</option><option>Ventanas</option><option>Barandas</option><option>Estructuras metálicas</option><option>Otro servicio</option></select></div></label>
+            <label><span>Descripción</span><div class="input-wrap textarea-wrap"><i data-lucide="message-square-text"></i><textarea class="form-control" id="description" name="description" placeholder="Describe brevemente tu proyecto" rows="3"></textarea></div></label>
+            <button class="btn button button-primary form-submit" type="submit"><svg class="bi bi-whatsapp whatsapp-icon" width="16" height="16" fill="currentColor" aria-hidden="true"><use href="#whatsapp-icon"></use></svg> Enviar por WhatsApp</button>
           </form>
           <p class="form-status" id="form-status" role="status"></p>
         </div>
@@ -171,12 +189,13 @@
     </section>
 
     <section class="contact-strip" id="contacto">
-      <div class="container contact-grid">
-        <div class="suggestion reveal">
+      <div class="container">
+      <div class="row g-4 contact-grid">
+        <div class="col-lg-5 suggestion reveal">
           <i data-lucide="messages-square"></i>
           <div><h2>Comentarios / Sugerencias</h2><p>Tu opinión nos ayuda a mejorar.</p><a href="mailto:contacto@estructurashl.com">Escríbenos <i data-lucide="arrow-right"></i></a></div>
         </div>
-        <div class="contact-info reveal">
+        <div class="col-lg-7 contact-info reveal">
           <h2>Información de contacto</h2>
           <p>Contáctanos directamente</p>
           <div class="email-list">
@@ -186,20 +205,21 @@
           </div>
         </div>
       </div>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
     <div class="container footer-main">
-      <img src="logoHL.png" alt="Estructuras HL S.A.S.">
+      <img src="/img/logoHL.png" alt="Estructuras HL S.A.S.">
       <nav aria-label="Navegación secundaria"><a href="#inicio">Inicio</a><a href="#nosotros">Nosotros</a><a href="#servicios">Servicios</a><a href="#galeria">Galería</a><a href="#sedes">Sedes</a><a href="#contacto">Contacto</a></nav>
-      <div class="socials"><a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a><a href="https://wa.me/573001234567" target="_blank" rel="noreferrer" aria-label="WhatsApp"><i data-lucide="message-circle"></i></a></div>
+      <div class="socials"><a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a><a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a><a href="https://wa.me/573001234567" target="_blank" rel="noreferrer" aria-label="WhatsApp"><svg class="bi bi-whatsapp whatsapp-icon" width="16" height="16" fill="currentColor" aria-hidden="true"><use href="#whatsapp-icon"></use></svg></a></div>
       <div class="footer-phone"><i data-lucide="phone"></i><span>WhatsApp<strong>+57 300 123 4567</strong></span></div>
     </div>
     <div class="container copyright">© <span id="year"></span> HL S.A.S. Todos los derechos reservados.</div>
   </footer>
 
-  <a class="floating-whatsapp" href="https://wa.me/573001234567" target="_blank" rel="noreferrer" aria-label="Contactar por WhatsApp"><i data-lucide="message-circle"></i></a>
+  <a class="floating-whatsapp" href="https://wa.me/573001234567" target="_blank" rel="noreferrer" aria-label="Contactar por WhatsApp"><svg class="bi bi-whatsapp whatsapp-icon" width="16" height="16" fill="currentColor" aria-hidden="true"><use href="#whatsapp-icon"></use></svg></a>
 
   <dialog class="lightbox" id="lightbox">
     <button type="button" class="lightbox-close" aria-label="Cerrar imagen"><i data-lucide="x"></i></button>

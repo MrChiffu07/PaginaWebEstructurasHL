@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portafolio de servicios de Estructuras HL S.A.S.">
+  <title>Portafolio | Estructuras HL S.A.S.</title>
+  <style>
+    :root { color-scheme: light; --red: #d91e32; --ink: #17191c; --muted: #60646a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); font: 16px/1.6 Arial, sans-serif; background: #eef0f2; }
+    .page { width: min(100% - 32px, 900px); margin: 32px auto; padding: 64px 72px; background: #fff; box-shadow: 0 12px 50px #18202b1c; }
+    .topline { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-bottom: 22px; border-bottom: 2px solid var(--red); }
+    .brand { color: var(--red); font-weight: 800; letter-spacing: .08em; }
+    .brand span { display: block; color: var(--ink); font-size: .72rem; letter-spacing: .18em; }
+    .eyebrow { margin: 54px 0 8px; color: var(--red); font-size: .78rem; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; }
+    h1 { max-width: 650px; margin: 0; font-size: clamp(2.7rem, 8vw, 5.4rem); line-height: .98; }
+    h1 span { color: var(--red); }
+    .intro { max-width: 650px; margin: 24px 0 42px; color: var(--muted); font-size: 1.08rem; }
+    h2 { margin: 0 0 18px; font-size: 1.5rem; }
+    .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; border: 1px solid #dfe1e4; background: #dfe1e4; }
+    .services article { min-height: 130px; padding: 20px; background: #fff; }
+    .services h3 { margin: 0 0 7px; color: var(--red); font-size: 1rem; }
+    .services p { margin: 0; color: var(--muted); font-size: .86rem; }
+    .promise { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 42px; padding: 25px 28px; background: #f3f4f5; }
+    .promise p { margin: 5px 0 0; color: var(--muted); font-size: .9rem; }
+    .contact { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; margin-top: 42px; padding-top: 23px; border-top: 1px solid #dfe1e4; }
+    .contact p { margin: 0; color: var(--muted); font-size: .9rem; }
+    .contact strong { color: var(--ink); }
+    .print { position: fixed; right: 24px; bottom: 24px; padding: 13px 20px; border: 0; color: white; background: var(--red); font-weight: 700; cursor: pointer; }
+    @media (max-width: 620px) {
+      .page { margin: 0 auto; padding: 35px 24px; }
+      .services { grid-template-columns: 1fr 1fr; }
+      .promise { grid-template-columns: 1fr; gap: 18px; }
+      .eyebrow { margin-top: 38px; }
+    }
+    @media print {
+      @page { size: A4; margin: 15mm; }
+      body { background: white; }
+      .page { width: auto; margin: 0; padding: 0; box-shadow: none; }
+      .print { display: none; }
+      .services, .promise, .contact { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topline">
+      <div class="brand">ESTRUCTURAS <span>HL S.A.S.</span></div>
+      <div>Diseño · Fabricación · Instalación</div>
+    </div>
+    <p class="eyebrow">Portafolio de servicios</p>
+    <h1>Soluciones en metal<br>que dan forma a <span>tus ideas.</span></h1>
+    <p class="intro">Diseñamos, fabricamos e instalamos soluciones metálicas para hogares, comercios y proyectos industriales. Cada trabajo se desarrolla a la medida, con atención al detalle, seguridad y compromiso.</p>
+
+    <h2>Qué hacemos</h2>
+    <div class="services">
+      <article><h3>Rejas</h3><p>Protección, durabilidad y diseño para cada espacio.</p></article>
+      <article><h3>Puertas</h3><p>Accesos funcionales y fabricados a la medida.</p></article>
+      <article><h3>Ventanas</h3><p>Perfilería metálica con acabados precisos.</p></article>
+      <article><h3>Barandas</h3><p>Seguridad y estilo para escaleras y balcones.</p></article>
+      <article><h3>Estructuras metálicas</h3><p>Soluciones resistentes para construir y ampliar.</p></article>
+      <article><h3>Proyectos especiales</h3><p>Fabricación y soldadura según cada necesidad.</p></article>
+    </div>
+
+    <div class="promise">
+      <div><strong>Nuestro compromiso</strong><p>Calidad garantizada, seguridad en cada proyecto y acompañamiento cercano durante el proceso.</p></div>
+      <div><strong>Cobertura</strong><p>Atención en Bogotá y Duitama, con asesoría para proyectos en otras ubicaciones.</p></div>
+    </div>
+
+    <div class="contact">
+      <p><strong>Solicita una cotización</strong><br>WhatsApp: +57 300 123 4567</p>
+      <p><strong>Sedes</strong><br>Bogotá, D.C. · Duitama, Boyacá</p>
+      <p><strong>Correo</strong><br>gerencia@estructurashl.com</p>
+    </div>
+  </main>
+  <button class="print" type="button" onclick="window.print()">Imprimir / Guardar como PDF</button>
+</body>
+</html>

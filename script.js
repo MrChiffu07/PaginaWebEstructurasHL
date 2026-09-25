@@ -6,29 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const header = document.querySelector(".site-header");
-  const menuButton = document.querySelector(".menu-toggle");
   const navigation = document.querySelector(".main-nav");
   const navigationLinks = [...document.querySelectorAll('.main-nav a[href^="#"]')];
 
-  const closeMenu = () => {
-    navigation.classList.remove("open");
-    document.body.classList.remove("menu-open");
-    menuButton.setAttribute("aria-expanded", "false");
-    menuButton.setAttribute("aria-label", "Abrir menú");
-    menuButton.innerHTML = '<i data-lucide="menu"></i>';
-    window.lucide?.createIcons();
-  };
-
-  menuButton.addEventListener("click", () => {
-    const isOpen = navigation.classList.toggle("open");
-    document.body.classList.toggle("menu-open", isOpen);
-    menuButton.setAttribute("aria-expanded", String(isOpen));
-    menuButton.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
-    menuButton.innerHTML = `<i data-lucide="${isOpen ? "x" : "menu"}"></i>`;
-    window.lucide?.createIcons();
-  });
-
-  navigationLinks.forEach((link) => link.addEventListener("click", closeMenu));
+  navigationLinks.forEach((link) => link.addEventListener("click", () => {
+    window.bootstrap?.Collapse.getInstance(navigation)?.hide();
+  }));
 
   const updateHeader = () => header.classList.toggle("scrolled", window.scrollY > 24);
   updateHeader();
