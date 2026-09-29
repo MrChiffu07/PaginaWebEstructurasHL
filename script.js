@@ -1,6 +1,86 @@
 const WHATSAPP_NUMBER = "573001234567";
+const CONTENT_URL = "content/site.json";
 
-document.addEventListener("DOMContentLoaded", () => {
+const createIcon = (name) => {
+  const icon = document.createElement("i");
+  icon.dataset.lucide = name;
+  return icon;
+};
+
+const renderServices = (services) => {
+  const grid = document.querySelector("#services-grid");
+  if (!grid || !services.length) return;
+  grid.textContent = "";
+
+  services.forEach((service) => {
+    const col = document.createElement("article");
+    col.className = "col";
+
+    const card = document.createElement("div");
+    card.className = "card service-card reveal";
+
+    const image = document.createElement("img");
+    image.className = "card-img-top";
+    image.src = service.imagen || "";
+    image.alt = service.nombre || "";
+    image.loading = "lazy";
+
+    const body = document.createElement("div");
+    body.className = "card-body";
+
+    const title = document.createElement("h3");
+    title.append(createIcon("settings"), ` ${service.nombre || ""}`);
+
+    const description = document.createElement("p");
+    description.textContent = service.descripcion || "";
+
+    body.append(title, description);
+    card.append(image, body);
+    col.append(card);
+    grid.append(col);
+  });
+};
+
+const renderGallery = (gallery) => {
+  const grid = document.querySelector("#gallery-grid");
+  if (!grid || !gallery.length) return;
+  grid.textContent = "";
+
+  gallery.forEach((item) => {
+    const button = document.createElement("button");
+    button.className = "col gallery-item reveal";
+    button.type = "button";
+    button.dataset.full = item.imagen || "";
+    button.setAttribute("aria-label", `Ampliar imagen: ${item.titulo || "proyecto"}`);
+
+    const image = document.createElement("img");
+    image.src = item.imagen || "";
+    image.alt = item.titulo || "Proyecto de Estructuras HL";
+    image.loading = "lazy";
+
+    const overlay = document.createElement("span");
+    overlay.append(createIcon("maximize-2"));
+
+    button.append(image, overlay);
+    grid.append(button);
+  });
+};
+
+const loadContent = async () => {
+  try {
+    const response = await fetch(CONTENT_URL, { cache: "no-cache" });
+    if (!response.ok) return;
+    const data = await response.json();
+    renderServices(Array.isArray(data.servicios) ? data.servicios : []);
+    renderGallery(Array.isArray(data.galeria) ? data.galeria : []);
+  } catch {
+    // Sin acceso al JSON se conserva el contenido estático del HTML.
+  }
+};
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadContent();
+
   if (window.lucide) {
     window.lucide.createIcons();
   }

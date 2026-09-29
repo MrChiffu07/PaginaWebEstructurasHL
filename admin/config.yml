@@ -1,0 +1,50 @@
+
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "img/uploads"
+public_folder: "/img/uploads"
+
+locale: "es"
+
+collections:
+  - name: "contenido"
+    label: "Contenido de la página"
+    files:
+      - name: "sitio"
+        label: "Servicios y galería"
+        file: "content/site.json"
+        format: "json"
+        fields:
+          - label: "Servicios"
+            name: "servicios"
+            widget: "list"
+            summary: "{{fields.nombre}}"
+            fields:
+              - label: "Nombre del servicio"
+                name: "nombre"
+                widget: "string"
+              - label: "Descripción"
+                name: "descripcion"
+                widget: "text"
+              - label: "Imagen"
+                name: "imagen"
+                widget: "image"
+                required: false
+
+          - label: "Galería de trabajos"
+            name: "galeria"
+            widget: "list"
+            summary: "{{fields.titulo}}"
+            fields:
+              - label: "Título del trabajo"
+                name: "titulo"
+                widget: "string"
+              - label: "Descripción"
+                name: "descripcion"
+                widget: "text"
+                required: false
+              - label: "Fotografía"
+                name: "imagen"
+                widget: "image"
