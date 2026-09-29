@@ -24,6 +24,7 @@ const renderServices = (services) => {
     image.src = service.imagen || "";
     image.alt = service.nombre || "";
     image.loading = "lazy";
+    image.decoding = "async";
 
     const body = document.createElement("div");
     body.className = "card-body";
@@ -51,12 +52,14 @@ const renderGallery = (gallery) => {
     button.className = "col gallery-item reveal";
     button.type = "button";
     button.dataset.full = item.imagen || "";
+    button.dataset.category = item.categoria || "otros";
     button.setAttribute("aria-label", `Ampliar imagen: ${item.titulo || "proyecto"}`);
 
     const image = document.createElement("img");
     image.src = item.imagen || "";
     image.alt = item.titulo || "Proyecto de Estructuras HL";
     image.loading = "lazy";
+    image.decoding = "async";
 
     const overlay = document.createElement("span");
     overlay.append(createIcon("maximize-2"));
@@ -127,12 +130,27 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const lightbox = document.querySelector("#lightbox");
   const lightboxImage = lightbox.querySelector("img");
+  const galleryItems = [...document.querySelectorAll(".gallery-item")];
 
-  document.querySelectorAll(".gallery-item").forEach((item) => {
+  galleryItems.forEach((item) => {
     item.addEventListener("click", () => {
       lightboxImage.src = item.dataset.full;
       lightboxImage.alt = item.querySelector("img").alt;
       lightbox.showModal();
+    });
+  });
+
+  const galleryEmpty = document.querySelector("#gallery-empty");
+  const filterChips = [...document.querySelectorAll("#gallery-filters .filter-chip")];
+
+  filterChips.forEach((chip) => {
+    chip.addEventListener("click", () => {
+      const filter = chip.dataset.filter;
+      filterChips.forEach((other) => other.classList.toggle("is-active", other === chip));
+
+      const visible = galleryItems.filter((item) => filter === "todos" || item.dataset.category === filter);
+      galleryItems.forEach((item) => item.classList.toggle("is-hidden", !visible.includes(item)));
+      galleryEmpty.hidden = visible.length > 0;
     });
   });
 
@@ -142,7 +160,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.querySelector("#show-all").addEventListener("click", () => {
-    document.querySelector(".gallery-item").click();
+    galleryItems.find((item) => !item.classList.contains("is-hidden"))?.click();
   });
 
   const quoteForm = document.querySelector("#quote-form");
@@ -164,7 +182,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     formStatus.textContent = "Abriendo WhatsApp para enviar tu solicitud...";
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    quoteForm.reset();
   });
+
+  const floatingBadge = document.querySelector(".floating-badge");
+  setTimeout(() => floatingBadge?.classList.add("is-visible"), 1600);
 
   document.querySelector("#year").textContent = new Date().getFullYear();
 });

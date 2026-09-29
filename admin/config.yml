@@ -45,6 +45,16 @@ collections:
                 name: "descripcion"
                 widget: "text"
                 required: false
+              - label: "Categoría"
+                name: "categoria"
+                widget: "select"
+                default: "otros"
+                options:
+                  - { label: "Rejas", value: "rejas" }
+                  - { label: "Puertas", value: "puertas" }
+                  - { label: "Ventanas", value: "ventanas" }
+                  - { label: "Estructuras industriales", value: "estructuras" }
+                  - { label: "Otros", value: "otros" }
               - label: "Fotografía"
                 name: "imagen"
                 widget: "image"
