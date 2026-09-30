@@ -275,5 +275,21 @@
     <button type="button" class="lightbox-close" aria-label="Cerrar imagen"><i data-lucide="x"></i></button>
     <img src="" alt="Proyecto ampliado">
   </dialog>
+
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    // Redirige al panel las invitaciones/recuperaciones de Netlify Identity que lleguen a la home.
+    window.netlifyIdentity?.on("init", (user) => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+
+    if (/\b(invite_token|recovery_token|confirmation_token|email_change_token)=/.test(window.location.hash)) {
+      window.location.replace(`/admin/${window.location.hash}`);
+    }
+  </script>
 </body>
 </html>
