@@ -3,9 +3,9 @@ backend:
   name: git-gateway
   branch: main
 
-site_url: "https://estructurashl.netlify.app"
-display_url: "https://estructurashl.netlify.app"
-logo_url: "/img/logoHL.png"
+site_url: "https://hl-sas-web.netlify.app"
+display_url: "https://hl-sas-web.netlify.app"
+logo_url: "https://hl-sas-web.netlify.app/img/logoHL.png"
 
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
