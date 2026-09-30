@@ -180,10 +180,16 @@ h2 em { color: var(--red); font-style: normal; }
 .floating-whatsapp:hover { transform: scale(1.08); }
 .floating-whatsapp .whatsapp-icon { width: 28px; height: 28px; }
 
-.lightbox { max-width: min(92vw, 1100px); padding: 0; border: 0; border-radius: 4px; background: transparent; }
+.lightbox { max-width: min(92vw, 1100px); padding: 0; border: 0; border-radius: 4px; background: transparent; overflow: visible; }
 .lightbox::backdrop { background: rgba(0,0,0,.9); }
 .lightbox img { max-height: 86vh; margin: auto; object-fit: contain; }
 .lightbox-close { position: fixed; top: 20px; right: 22px; display: grid; width: 42px; height: 42px; place-items: center; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; color: var(--white); background: rgba(0,0,0,.45); cursor: pointer; }
+.lightbox-nav { position: fixed; top: 50%; display: grid; width: 48px; height: 48px; place-items: center; border: 1px solid rgba(255,255,255,.4); border-radius: 50%; color: var(--white); background: rgba(0,0,0,.45); cursor: pointer; transform: translateY(-50%); transition: background-color .2s ease, border-color .2s ease; }
+.lightbox-nav:hover { border-color: var(--red); background: var(--red); }
+.lightbox-nav svg { width: 24px; height: 24px; }
+.lightbox-prev { left: 18px; }
+.lightbox-next { right: 18px; }
+.lightbox-counter { position: fixed; right: 0; bottom: 18px; left: 0; margin: 0; text-align: center; color: rgba(255,255,255,.75); font-size: .75rem; font-weight: 700; }
 
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s ease, transform .7s ease; }
 .reveal.is-visible { opacity: 1; transform: none; }
@@ -242,6 +248,9 @@ h2 em { color: var(--red); font-style: normal; }
   .location-list { grid-template-columns: 1fr; }
   .email-list { grid-template-columns: 1fr; }
   .quote-content h2 { font-size: 1.4rem; }
+  .lightbox-nav { width: 40px; height: 40px; }
+  .lightbox-prev { left: 8px; }
+  .lightbox-next { right: 8px; }
   .floating-contact { right: 14px; bottom: 14px; }
   .floating-badge { display: none; }
   .floating-whatsapp { width: 50px; height: 50px; }

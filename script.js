@@ -130,15 +130,49 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const lightbox = document.querySelector("#lightbox");
   const lightboxImage = lightbox.querySelector("img");
+  const lightboxCounter = document.querySelector("#lightbox-counter");
   const galleryItems = [...document.querySelectorAll(".gallery-item")];
+  let visibleItems = [...galleryItems];
+  let currentIndex = 0;
+
+  const showImage = (index) => {
+    if (!visibleItems.length) return;
+    currentIndex = (index + visibleItems.length) % visibleItems.length;
+    const item = visibleItems[currentIndex];
+    lightboxImage.src = item.dataset.full;
+    lightboxImage.alt = item.querySelector("img").alt;
+    lightboxCounter.textContent = `${currentIndex + 1} / ${visibleItems.length}`;
+    lightbox.querySelectorAll(".lightbox-nav").forEach((button) => {
+      button.hidden = visibleItems.length < 2;
+    });
+  };
 
   galleryItems.forEach((item) => {
     item.addEventListener("click", () => {
-      lightboxImage.src = item.dataset.full;
-      lightboxImage.alt = item.querySelector("img").alt;
+      showImage(visibleItems.indexOf(item));
       lightbox.showModal();
     });
   });
+
+  lightbox.querySelector(".lightbox-prev").addEventListener("click", () => showImage(currentIndex - 1));
+  lightbox.querySelector(".lightbox-next").addEventListener("click", () => showImage(currentIndex + 1));
+
+  lightbox.addEventListener("keydown", (event) => {
+    if (event.key === "ArrowLeft") showImage(currentIndex - 1);
+    if (event.key === "ArrowRight") showImage(currentIndex + 1);
+  });
+
+  let touchStartX = null;
+  lightbox.addEventListener("touchstart", (event) => {
+    touchStartX = event.changedTouches[0].clientX;
+  }, { passive: true });
+
+  lightbox.addEventListener("touchend", (event) => {
+    if (touchStartX === null) return;
+    const deltaX = event.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(deltaX) > 45) showImage(currentIndex + (deltaX < 0 ? 1 : -1));
+    touchStartX = null;
+  }, { passive: true });
 
   const galleryEmpty = document.querySelector("#gallery-empty");
   const filterChips = [...document.querySelectorAll("#gallery-filters .filter-chip")];
@@ -148,9 +182,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       const filter = chip.dataset.filter;
       filterChips.forEach((other) => other.classList.toggle("is-active", other === chip));
 
-      const visible = galleryItems.filter((item) => filter === "todos" || item.dataset.category === filter);
-      galleryItems.forEach((item) => item.classList.toggle("is-hidden", !visible.includes(item)));
-      galleryEmpty.hidden = visible.length > 0;
+      visibleItems = galleryItems.filter((item) => filter === "todos" || item.dataset.category === filter);
+      galleryItems.forEach((item) => item.classList.toggle("is-hidden", !visibleItems.includes(item)));
+      galleryEmpty.hidden = visibleItems.length > 0;
     });
   });
 
@@ -160,7 +194,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   document.querySelector("#show-all").addEventListener("click", () => {
-    galleryItems.find((item) => !item.classList.contains("is-hidden"))?.click();
+    visibleItems[0]?.click();
   });
 
   const quoteForm = document.querySelector("#quote-form");
