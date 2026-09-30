@@ -3,6 +3,10 @@ backend:
   name: git-gateway
   branch: main
 
+site_url: "https://estructurashl.netlify.app"
+display_url: "https://estructurashl.netlify.app"
+logo_url: "/img/logoHL.png"
+
 media_folder: "img/uploads"
 public_folder: "/img/uploads"
 
@@ -11,32 +15,44 @@ locale: "es"
 collections:
   - name: "contenido"
     label: "Contenido de la página"
+    label_singular: "Contenido"
+    description: "Edita los servicios y las fotografías que se muestran en la página web."
     files:
       - name: "sitio"
         label: "Servicios y galería"
         file: "content/site.json"
         format: "json"
+        description: "Los cambios se publican automáticamente unos minutos después de guardar."
         fields:
           - label: "Servicios"
             name: "servicios"
             widget: "list"
+            label_singular: "Servicio"
+            collapsed: true
             summary: "{{fields.nombre}}"
+            hint: "Arrastra las tarjetas para cambiar el orden en que aparecen en la web."
             fields:
               - label: "Nombre del servicio"
                 name: "nombre"
                 widget: "string"
+                hint: "Ejemplo: Rejas, Puertas, Barandas."
               - label: "Descripción"
                 name: "descripcion"
                 widget: "text"
+                hint: "Una frase corta (máximo 2 líneas)."
               - label: "Imagen"
                 name: "imagen"
                 widget: "image"
                 required: false
+                hint: "Formato horizontal, idealmente 700x500 px."
 
           - label: "Galería de trabajos"
             name: "galeria"
             widget: "list"
-            summary: "{{fields.titulo}}"
+            label_singular: "Trabajo"
+            collapsed: true
+            summary: "{{fields.titulo}} — {{fields.categoria}}"
+            hint: "Agrega aquí las fotografías de proyectos terminados."
             fields:
               - label: "Título del trabajo"
                 name: "titulo"
@@ -49,6 +65,7 @@ collections:
                 name: "categoria"
                 widget: "select"
                 default: "otros"
+                hint: "Se usa para el filtro de la galería en la página."
                 options:
                   - { label: "Rejas", value: "rejas" }
                   - { label: "Puertas", value: "puertas" }
@@ -58,3 +75,4 @@ collections:
               - label: "Fotografía"
                 name: "imagen"
                 widget: "image"
+                hint: "Usa imágenes de buena calidad; se recortan a formato horizontal."
