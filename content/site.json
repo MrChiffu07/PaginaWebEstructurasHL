@@ -1,5 +1,10 @@
 {
-  "servicios": [],
+  "servicios": [
+    {
+      "nombre": "ESTO ES UNA PRUBEA",
+      "descripcion": "LIRUM NIDIA"
+    }
+  ],
   "galeria": [
     {
       "categoria": "puertas",
