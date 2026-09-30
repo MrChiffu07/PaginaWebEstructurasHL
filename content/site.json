@@ -1,11 +1,4 @@
 {
   "servicios": [],
-  "galeria": [
-    {
-      "categoria": "puertas",
-      "titulo": "TEST",
-      "descripcion": "prueba",
-      "imagen": "/img/uploads/whatsapp-image-2023-09-03-at-6.25.49-pm.jpeg"
-    }
-  ]
+  "galeria": []
 }
