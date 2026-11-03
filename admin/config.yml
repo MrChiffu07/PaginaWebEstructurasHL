@@ -70,6 +70,7 @@ collections:
                   - { label: "Rejas", value: "rejas" }
                   - { label: "Puertas", value: "puertas" }
                   - { label: "Ventanas", value: "ventanas" }
+                  - { label: "Barandas", value: "barandas" }
                   - { label: "Estructuras industriales", value: "estructuras" }
                   - { label: "Otros", value: "otros" }
               - label: "Fotografía"

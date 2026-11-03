@@ -25,6 +25,8 @@ const renderServices = (services) => {
     image.alt = service.nombre || "";
     image.loading = "lazy";
     image.decoding = "async";
+    image.width = 480;
+    image.height = 320;
 
     const body = document.createElement("div");
     body.className = "card-body";
@@ -35,8 +37,14 @@ const renderServices = (services) => {
     const description = document.createElement("p");
     description.textContent = service.descripcion || "";
 
-    body.append(title, description);
-    card.append(image, body);
+    const quote = document.createElement("a");
+    quote.href = "#cotizacion";
+    quote.className = "service-quote";
+    quote.dataset.service = service.nombre || "Otro servicio";
+    quote.textContent = "Cotizar esto";
+    body.append(title, description, quote);
+    if (service.imagen) card.append(image);
+    card.append(body);
     col.append(card);
     grid.append(col);
   });
@@ -60,6 +68,8 @@ const renderGallery = (gallery) => {
     image.alt = item.titulo || "Proyecto de Estructuras HL";
     image.loading = "lazy";
     image.decoding = "async";
+    image.width = 640;
+    image.height = 426;
 
     const overlay = document.createElement("span");
     overlay.append(createIcon("maximize-2"));
@@ -180,7 +190,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   filterChips.forEach((chip) => {
     chip.addEventListener("click", () => {
       const filter = chip.dataset.filter;
-      filterChips.forEach((other) => other.classList.toggle("is-active", other === chip));
+      filterChips.forEach((other) => {
+        other.classList.toggle("is-active", other === chip);
+        other.setAttribute("aria-pressed", String(other === chip));
+      });
 
       visibleItems = galleryItems.filter((item) => filter === "todos" || item.dataset.category === filter);
       galleryItems.forEach((item) => item.classList.toggle("is-hidden", !visibleItems.includes(item)));
@@ -200,8 +213,20 @@ document.addEventListener("DOMContentLoaded", async () => {
   const quoteForm = document.querySelector("#quote-form");
   const formStatus = document.querySelector("#form-status");
 
+  document.querySelectorAll("[data-service]").forEach((link) => {
+    link.addEventListener("click", () => {
+      const service = document.querySelector("#service");
+      service.value = [...service.options].some((option) => option.value === link.dataset.service)
+        ? link.dataset.service : "Otro servicio";
+      document.querySelector("#name").focus({ preventScroll: true });
+    });
+  });
+
   quoteForm.addEventListener("submit", (event) => {
     event.preventDefault();
+    quoteForm.querySelectorAll('input[type="text"], textarea').forEach((field) => {
+      field.value = field.value.trim();
+    });
     if (!quoteForm.reportValidity()) return;
 
     const name = document.querySelector("#name").value.trim();
@@ -211,12 +236,20 @@ document.addEventListener("DOMContentLoaded", async () => {
       "Hola, Estructuras HL. Quiero solicitar una cotización.",
       `Nombre: ${name}`,
       `Servicio: ${service}`,
+      `Ciudad: ${quoteForm.elements.city.value}`,
+      `Correo: ${quoteForm.elements.email.value}`,
+      `Medidas aproximadas: ${quoteForm.elements.measurements.value || "Por definir en visita"}`,
+      `Instalación: ${quoteForm.elements.installation.value}`,
       description ? `Descripción: ${description}` : ""
     ].filter(Boolean).join("\n");
 
-    formStatus.textContent = "Abriendo WhatsApp para enviar tu solicitud...";
-    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
-    quoteForm.reset();
+    if (event.submitter?.value === "email") {
+      formStatus.textContent = "Se abrirá tu aplicación de correo. Revisa y envía la solicitud; todavía no ha sido enviada.";
+      window.location.href = `mailto:contacto@estructurashl.com?subject=${encodeURIComponent(`Cotización: ${service} en ${quoteForm.elements.city.value}`)}&body=${encodeURIComponent(message)}`;
+    } else {
+      formStatus.textContent = "Revisa y envía el mensaje en WhatsApp. Si no se abre, usa Enviar por correo. Tus datos permanecen en el formulario.";
+      window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    }
   });
 
   const floatingBadge = document.querySelector(".floating-badge");
