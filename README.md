@@ -8,29 +8,24 @@ Página de presentación de Estructuras HL. Sitio estático; abrir `index.html` 
 - Confirmar direcciones, cobertura, materiales disponibles, plazos típicos y garantía. No se inventan cifras ni promesas de entrega.
 - Aprobar la política de `privacidad.html`, completar NIT, identificación legal, retención y vigencia, y verificar los canales para ejercer derechos. Es un borrador, no una certificación de cumplimiento.
 - Sustituir referencias por fotografías propias autorizadas; no se presentan fotos urbanas genéricas como sedes. Las imágenes actuales son ejemplos y el sitio lo advierte.
-- La sección de reseñas contiene tres perfiles y comentarios ficticios, identificados como ejemplos tanto en el encabezado como en cada tarjeta. Sustituirlos por testimonios reales con autorización antes de usarlos como prueba social; no quitar las etiquetas para presentarlos como auténticos. Las cifras de experiencia siguen pendientes de documentación.
+- La sección de reseñas contiene tres perfiles y comentarios ficticios, identificados por un único aviso visible al inicio de la sección. Sustituirlos por testimonios reales con autorización antes de usarlos como prueba social; no quitar el aviso para presentarlos como auténticos. Las cifras de experiencia siguen pendientes de documentación.
 - Facebook e Instagram se omiten hasta disponer de sus URL oficiales; no publicar enlaces `#` ni inventar perfiles.
 - El formulario prepara mensajes para WhatsApp o el cliente de correo; no hay servidor de recepción, confirmación de entrega ni registro de consentimientos. Para un respaldo independiente de esas aplicaciones se necesita un servicio de formularios con tratamiento de datos aprobado.
 
 ## Imágenes
 
-Referencias de Unsplash descargadas como WebP con calidad 75, sin hotlinks en la página. Miniaturas de 640 × 426, imagen de nosotros de 800 × 600 y portada de 1600 × 1000. El logotipo existente se mantiene como favicon y Open Graph.
+Los servicios usan iconos sobre una textura de acero; no se muestran las antiguas fotos de interiores. La portada usa soldadura a 1600 × 1000. La galería contiene piezas metálicas concretas, verificadas visualmente, convertidas a WebP de 960 × 640 con recorte 3:2 y sobreimpresión oscura uniforme. No son obras de la empresa.
 
-| Archivo en `img/` | Identificador de la fuente en Unsplash |
+| Archivo en `img/` | Fuente y licencia |
 | --- | --- |
-| ejemplo-portada.webp | photo-1600607687920-4e2a09cf159d |
-| ejemplo-rejas.webp | photo-1600607687939-ce8a6c25118c |
-| ejemplo-puertas.webp | photo-1506377295352-e3154d43ea9e |
-| ejemplo-ventanas.webp | photo-1600566753086-00f18fb6b3ea |
-| ejemplo-barandas.webp | photo-1600585154340-be6161a56a0c |
-| ejemplo-estructuras.webp | photo-1486406146926-c627a92ad1ab |
-| ejemplo-soldadura.webp | photo-1504917595217-d4dc5ebe6122 |
-| ejemplo-taller.webp | photo-1487958449943-2429e8be8625 |
-| ejemplo-escalera.webp | photo-1600566753190-17f0baa2a6c3 |
-| ejemplo-cubierta.webp | photo-1511818966892-d7d671e672a2 |
-| ejemplo-ventanales.webp | photo-1600585154526-990dced4db0d |
+| soldadura-portada.webp | [Unsplash, photo-1504917595217-d4dc5ebe6122](https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122), licencia Unsplash |
+| referencia-porton.webp | [Francesco Bini (Sailko), Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Via_jacopo_nardi_3,_palazzina_con_decorazioni_liberty,_02_cancellata.jpg), CC BY-SA 4.0 |
+| referencia-baranda.webp | [Editorq35, Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Stainless_steel_railing.jpg), CC BY 4.0 |
+| referencia-perfil.webp | [Sastognuti, Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Stahltr%C3%A4ger_(steel_profile).jpg), CC BY-SA 4.0 |
 
-Las fuentes originales se consultan en `https://images.unsplash.com/` seguido del identificador. Revisar licencia y pertinencia antes de su uso comercial. Los títulos describen referencias, no obras de la empresa.
+Los créditos y enlaces de licencia también aparecen bajo la galería. Las adaptaciones de portón y perfil se ofrecen bajo [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/); la baranda bajo [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). El emblema original se conserva en la cabecera, el pie y Open Graph. Los títulos usan rojo de marca sobre fondos claros y rojo claro sobre fondos oscuros. Las antiguas imágenes permanecen en el repositorio pero no se cargan en la página.
+
+En el CMS, subir solo fotografías pertinentes y autorizadas. Un servicio sin foto muestra automáticamente su icono; los filtros sin imágenes se ocultan al cargar el contenido.
 
 ## Verificación
 

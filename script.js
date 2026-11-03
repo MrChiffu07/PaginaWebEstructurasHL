@@ -19,20 +19,30 @@ const renderServices = (services) => {
     const card = document.createElement("div");
     card.className = "card service-card reveal";
 
-    const image = document.createElement("img");
-    image.className = "card-img-top";
-    image.src = service.imagen || "";
-    image.alt = service.nombre || "";
-    image.loading = "lazy";
-    image.decoding = "async";
-    image.width = 480;
-    image.height = 320;
+    const icons = {
+      Rejas: "shield", Puertas: "door-open", Ventanas: "panel-top",
+      Barandas: "align-vertical-justify-center", "Estructuras metálicas": "warehouse"
+    };
+    const visual = document.createElement("div");
+    visual.className = "service-visual";
+    visual.setAttribute("aria-hidden", "true");
+    visual.append(createIcon(icons[service.nombre] || "settings"));
+    if (service.imagen) {
+      const image = document.createElement("img");
+      image.src = service.imagen;
+      image.alt = service.nombre || "";
+      image.loading = "lazy";
+      image.decoding = "async";
+      image.width = 640;
+      image.height = 426;
+      visual.replaceChildren(image);
+    }
 
     const body = document.createElement("div");
     body.className = "card-body";
 
     const title = document.createElement("h3");
-    title.append(createIcon("settings"), ` ${service.nombre || ""}`);
+    title.textContent = service.nombre || "";
 
     const description = document.createElement("p");
     description.textContent = service.descripcion || "";
@@ -43,8 +53,7 @@ const renderServices = (services) => {
     quote.dataset.service = service.nombre || "Otro servicio";
     quote.textContent = "Cotizar esto";
     body.append(title, description, quote);
-    if (service.imagen) card.append(image);
-    card.append(body);
+    card.append(visual, body);
     col.append(card);
     grid.append(col);
   });
@@ -61,7 +70,7 @@ const renderGallery = (gallery) => {
     button.type = "button";
     button.dataset.full = item.imagen || "";
     button.dataset.category = item.categoria || "otros";
-    button.setAttribute("aria-label", `Ampliar imagen: ${item.titulo || "proyecto"}`);
+    button.setAttribute("aria-label", `Ampliar imagen: ${item.titulo || "Referencia metálica"}`);
 
     const image = document.createElement("img");
     image.src = item.imagen || "";
@@ -74,7 +83,9 @@ const renderGallery = (gallery) => {
     const overlay = document.createElement("span");
     overlay.append(createIcon("maximize-2"));
 
-    button.append(image, overlay);
+    const caption = document.createElement("strong");
+    caption.textContent = item.titulo || "Referencia metálica";
+    button.append(image, overlay, caption);
     grid.append(button);
   });
 };
@@ -186,6 +197,13 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const galleryEmpty = document.querySelector("#gallery-empty");
   const filterChips = [...document.querySelectorAll("#gallery-filters .filter-chip")];
+
+  filterChips.forEach((chip) => {
+    chip.hidden = chip.dataset.filter !== "todos" &&
+      !galleryItems.some((item) => item.dataset.category === chip.dataset.filter);
+  });
+  galleryEmpty.hidden = galleryItems.length > 0;
+  document.querySelector("#show-all").disabled = galleryItems.length === 0;
 
   filterChips.forEach((chip) => {
     chip.addEventListener("click", () => {
