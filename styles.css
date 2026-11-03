@@ -165,7 +165,19 @@ h2 em { color: inherit; font-style: normal; }
 .form-submit { width: 100%; margin-top: 3px; padding: 10px 12px; }
 .form-note { margin: 16px 0 0; color: #c2c4c9; font-size: .875rem; overflow-wrap: anywhere; }
 .form-note svg { width: 13px; height: 13px; flex: 0 0 auto; }
-.form-status { min-height: 24px; margin: 8px 0 0; color: #d8d9db; font-size: .875rem; }
+.form-status { display: flex; min-height: 64px; align-items: center; gap: 12px; margin: 8px 0 0; color: #d8d9db; font-size: .9375rem; font-weight: 700; }
+.form-status-symbol { display: grid; width: 44px; height: 44px; flex: 0 0 44px; place-items: center; border: 1px solid currentColor; border-radius: var(--radius-round); }
+.form-status:not([data-state]) .form-status-symbol { visibility: hidden; }
+.form-status .status-icon { display: none; width: 24px; height: 24px; }
+.form-status[data-state="sending"] .status-loading { display: block; animation: status-spin .9s linear infinite; }
+.form-status[data-state="success"] { color: #68e0a1; }
+.form-status[data-state="success"] .status-success { display: block; animation: status-pop .35s ease-out both; }
+.form-status[data-state="error"] { color: #ff9a9a; }
+.form-status[data-state="error"] .status-error { display: block; animation: status-shake .35s ease-out both; }
+.form-status[data-state="whatsapp"] .status-whatsapp { display: block; animation: status-pop .35s ease-out both; }
+@keyframes status-spin { to { transform: rotate(360deg); } }
+@keyframes status-pop { from { opacity: 0; transform: scale(.5); } to { opacity: 1; transform: scale(1); } }
+@keyframes status-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
 
 .contact-strip { padding-block: 46px; background: var(--paper); }
 .suggestion, .contact-info { display: flex; gap: 18px; }

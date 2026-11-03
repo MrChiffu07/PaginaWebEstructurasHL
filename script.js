@@ -230,6 +230,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const quoteForm = document.querySelector("#quote-form");
   const formStatus = document.querySelector("#form-status");
+  const formStatusText = document.querySelector("#form-status-text");
+  const setFormStatus = (state, text) => {
+    formStatus.dataset.state = state;
+    formStatusText.textContent = text;
+  };
 
   document.querySelectorAll("[data-service]").forEach((link) => {
     link.addEventListener("click", () => {
@@ -240,8 +245,9 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  quoteForm.addEventListener("submit", (event) => {
+  quoteForm.addEventListener("submit", async (event) => {
     event.preventDefault();
+    if (quoteForm.getAttribute("aria-busy") === "true") return;
     quoteForm.querySelectorAll('input[type="text"], textarea').forEach((field) => {
       field.value = field.value.trim();
     });
@@ -257,15 +263,35 @@ document.addEventListener("DOMContentLoaded", async () => {
       `Ciudad: ${quoteForm.elements.city.value}`,
       `Correo: ${quoteForm.elements.email.value}`,
       `Medidas aproximadas: ${quoteForm.elements.measurements.value || "Por definir en visita"}`,
-      `Instalación: ${quoteForm.elements.installation.value}`,
       description ? `Descripción: ${description}` : ""
     ].filter(Boolean).join("\n");
 
     if (event.submitter?.value === "email") {
-      formStatus.textContent = "Se abrirá tu aplicación de correo. Revisa y envía la solicitud; todavía no ha sido enviada.";
-      window.location.href = `mailto:contacto@estructurashl.com?subject=${encodeURIComponent(`Cotización: ${service} en ${quoteForm.elements.city.value}`)}&body=${encodeURIComponent(message)}`;
+      const buttons = [...quoteForm.querySelectorAll('button[type="submit"]')];
+      const payload = new URLSearchParams(new FormData(quoteForm));
+      payload.set("channel", "email");
+      quoteForm.setAttribute("aria-busy", "true");
+      buttons.forEach((button) => { button.disabled = true; });
+      setFormStatus("sending", "Enviando...");
+
+      try {
+        const response = await fetch(quoteForm.action, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: payload.toString(),
+          signal: AbortSignal.timeout(20000)
+        });
+        if (!response.ok) throw new Error("No se pudo recibir la solicitud");
+        setFormStatus("success", "Envío realizado");
+        quoteForm.reset();
+      } catch {
+        setFormStatus("error", "No fue posible enviar");
+      } finally {
+        quoteForm.setAttribute("aria-busy", "false");
+        buttons.forEach((button) => { button.disabled = false; });
+      }
     } else {
-      formStatus.textContent = "Revisa y envía el mensaje en WhatsApp. Si no se abre, usa Enviar por correo. Tus datos permanecen en el formulario.";
+      setFormStatus("whatsapp", "Continúa en WhatsApp");
       window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
     }
   });

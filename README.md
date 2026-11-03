@@ -10,7 +10,22 @@ Página de presentación de Estructuras HL. Sitio estático; abrir `index.html` 
 - Sustituir referencias por fotografías propias autorizadas; no se presentan fotos urbanas genéricas como sedes. Las imágenes actuales son ejemplos y el sitio lo advierte.
 - La sección de reseñas contiene tres perfiles y comentarios ficticios, identificados por un único aviso visible al inicio de la sección. Sustituirlos por testimonios reales con autorización antes de usarlos como prueba social; no quitar el aviso para presentarlos como auténticos. Las cifras de experiencia siguen pendientes de documentación.
 - Facebook e Instagram se omiten hasta disponer de sus URL oficiales; no publicar enlaces `#` ni inventar perfiles.
-- El formulario prepara mensajes para WhatsApp o el cliente de correo; no hay servidor de recepción, confirmación de entrega ni registro de consentimientos. Para un respaldo independiente de esas aplicaciones se necesita un servicio de formularios con tratamiento de datos aprobado.
+- El envío por correo utiliza Netlify Forms y requiere activar la detección de formularios y las notificaciones en el sitio desplegado. Revisar tratamiento, conservación y acceso a los registros antes de recibir solicitudes reales. WhatsApp sigue abriéndose para que el cliente confirme el mensaje.
+
+## Recepción y correo automático
+
+El formulario `cotizacion` se envía mediante POST a Netlify Forms, sin abrir el cliente de correo. Tiene protección honeypot, consentimiento obligatorio y versión de política. Mientras envía desactiva ambos botones; ante un error conserva los campos y permite reintentar o usar WhatsApp. Solo borra los campos después de una respuesta satisfactoria.
+
+Configuración necesaria en Netlify (no se puede activar desde el HTML):
+
+1. Abrir el proyecto y activar **Forms > Enable form detection**.
+2. Desplegar esta versión y comprobar que aparece el formulario **cotizacion**.
+3. En **Forms > Submission notifications > Add notification**, crear una notificación de correo para ese formulario al buzón de atención verificado. Netlify exige que el destinatario sea un miembro activo del equipo; si se usa `contacto@estructurashl.com`, debe cumplir ese requisito.
+4. Enviar una prueba desde la URL desplegada y verificar tanto el registro en Forms como la llegada al buzón. Revisar spam y los límites del plan.
+
+El campo `email` establece Reply-To para responder al cliente. La confirmación de recepción del formulario no demuestra que la notificación de correo haya llegado; no se envía automáticamente un correo de confirmación al cliente.
+
+El servidor local `python3 -m http.server` no implementa Netlify Forms: un POST local falla y debe mostrar el mensaje de error, no un éxito ficticio. Para pruebas de interfaz se pueden simular respuestas HTTP sin enviar datos reales. Documentación: [configuración de formularios](https://docs.netlify.com/manage/forms/setup/) y [notificaciones](https://docs.netlify.com/manage/forms/notifications/).
 
 ## Imágenes
 
@@ -30,6 +45,6 @@ En el CMS, subir solo fotografías pertinentes y autorizadas. Un servicio sin fo
 ## Verificación
 
 - Sintaxis: `node --check script.js`.
-- Navegador: comprobar cada botón de cotización, filtros y `aria-pressed`, ampliación/cierre de imágenes por teclado, formulario inválido/válido, consentimiento obligatorio y ambos canales sin borrar datos.
+- Navegador: comprobar cada botón de cotización, filtros y `aria-pressed`, ampliación/cierre de imágenes por teclado, formulario inválido/válido y consentimiento obligatorio. WhatsApp conserva los datos; el envío directo los conserva si falla y los limpia si el servicio confirma recepción. Probar bloqueo de duplicados y recuperación tras error de red o HTTP.
 - Revisar escritorio y móvil, foco visible, contraste y política accesible también desde el pie móvil.
 - Lighthouse puede ejecutarse contra el servidor local; PageSpeed Insights requiere una URL pública con estos cambios desplegados. No evaluar la versión anterior como si fuera esta revisión.

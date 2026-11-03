@@ -297,8 +297,13 @@
       <div class="container quote-layout">
         <div class="quote-content reveal">
           <h2 id="quote-title">Solicita tu cotización</h2>
-          <p>Prepara tu solicitud y elige enviarla por WhatsApp o desde tu aplicación de correo. No se envía automáticamente.</p>
-          <form id="quote-form">
+          <p>Envía tu solicitud desde esta página o continúa por WhatsApp. No necesitas abrir una aplicación de correo.</p>
+          <form id="quote-form" name="cotizacion" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="cotizacion">
+            <input type="hidden" name="channel" value="email">
+            <input type="hidden" name="policy-version" value="2026-11-03">
+            <input type="hidden" name="subject" value="Nueva cotización | Estructuras HL">
+            <p hidden><label>No completar este campo: <input name="bot-field" autocomplete="off" tabindex="-1"></label></p>
             <label for="name"><span>Nombre completo</span></label>
             <div class="input-wrap"><i data-lucide="user"></i><input class="form-control" id="name" name="name" type="text" placeholder="Nombre completo" autocomplete="name" minlength="2" maxlength="100" required></div>
             <label for="city"><span>Ciudad del proyecto</span></label>
@@ -308,20 +313,25 @@
             <label><span>Servicio de interés</span><div class="input-wrap"><i data-lucide="briefcase-business"></i><select class="form-select" id="service" name="service" required><option value="">Selecciona un servicio</option><option>Rejas</option><option>Puertas</option><option>Ventanas</option><option>Barandas</option><option>Estructuras metálicas</option><option>Otro servicio</option></select></div></label>
             <label for="measurements"><span>Medidas aproximadas (opcional)</span></label>
             <div class="input-wrap"><i data-lucide="ruler"></i><input class="form-control" id="measurements" name="measurements" type="text" maxlength="160" placeholder="Ej.: 2 m de ancho × 1,5 m de alto"></div>
-            <label for="installation"><span>¿Necesitas instalación?</span></label>
-            <div class="input-wrap"><i data-lucide="hard-hat"></i><select class="form-select" id="installation" name="installation" required><option value="">Selecciona una opción</option><option>Sí</option><option>No</option><option>Necesito asesoría</option></select></div>
             <label><span>Descripción (opcional)</span><div class="input-wrap textarea-wrap"><i data-lucide="message-square-text"></i><textarea class="form-control" id="description" name="description" placeholder="Uso, material, acabado o fecha deseada" rows="3" maxlength="1500"></textarea></div></label>
-            <label class="consent" for="consent"><input id="consent" name="consent" type="checkbox" required> Autorizo el tratamiento de mis datos para gestionar esta solicitud según la <a href="privacidad.html">política de tratamiento de datos</a>.</label>
+            <label class="consent" for="consent"><input id="consent" name="consent" type="checkbox" value="Autorizado" required> Autorizo el tratamiento de mis datos para gestionar esta solicitud según la <a href="privacidad.html">política de tratamiento de datos</a>.</label>
             <button class="btn button button-primary form-submit" type="submit" name="channel" value="whatsapp"><svg class="bi bi-whatsapp whatsapp-icon" width="16" height="16" fill="currentColor" aria-hidden="true"><use href="#whatsapp-icon"></use></svg> Enviar por WhatsApp</button>
             <button class="btn button button-portfolio form-submit" type="submit" name="channel" value="email"><i data-lucide="mail"></i> Enviar por correo</button>
           </form>
-          <p class="form-note">No guardamos este formulario en el sitio. Al enviarlo, compartirás los datos con WhatsApp o tu proveedor de correo. También puedes escribir a <a href="mailto:contacto@estructurashl.com">contacto@estructurashl.com</a>.</p>
-          <p class="form-status" id="form-status" role="status"></p>
+          <div class="form-status" id="form-status" role="status" aria-live="polite" aria-atomic="true">
+            <span class="form-status-symbol" aria-hidden="true">
+              <i class="status-icon status-loading" data-lucide="loader-circle"></i>
+              <i class="status-icon status-success" data-lucide="check"></i>
+              <i class="status-icon status-error" data-lucide="x"></i>
+              <i class="status-icon status-whatsapp" data-lucide="external-link"></i>
+            </span>
+            <span id="form-status-text"></span>
+          </div>
         </div>
         <aside class="quote-perks reveal" aria-labelledby="quote-help-title">
           <p class="section-kicker">Hablemos de tu proyecto</p>
           <h3 id="quote-help-title">Una cotización con el alcance claro.</h3>
-          <p>Indica la ciudad, las medidas que tengas y si necesitas instalación. Si todavía no sabes qué material elegir, podemos revisar las opciones contigo.</p>
+          <p>Indica la ciudad y las medidas que tengas. Si todavía no sabes qué material elegir, podemos revisar las opciones contigo.</p>
           <article><i data-lucide="ruler"></i><div><h4>Medidas aproximadas</h4><p>Ancho, alto y lugar de instalación ayudan a preparar la propuesta.</p></div></article>
           <article><i data-lucide="clipboard-check"></i><div><h4>Condiciones por escrito</h4><p>Consulta materiales, acabado, transporte, plazo y garantía.</p></div></article>
           <a href="mailto:contacto@estructurashl.com"><i data-lucide="mail"></i> contacto@estructurashl.com</a>
